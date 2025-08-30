@@ -9,10 +9,11 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-
+//注入点为PlayerScreenHandler第一个匿名类$1，也就是Slot的匿名子类
 @Mixin(targets = "net.minecraft.screen.PlayerScreenHandler$1")
-public class ExampleMixin
+public class PlayerScreenHandlerMixin
 {
+	//获取匿名类的捕获字段
 	@Shadow @Final
 	EquipmentSlot field_7834;//equipmentSlot
 	
@@ -22,7 +23,7 @@ public class ExampleMixin
 		at = @At(value = "HEAD"),
 		cancellable = true
 	)
-	private void init(ItemStack stack, CallbackInfoReturnable<Boolean> cir)
+	private void canInsertInject(ItemStack stack, CallbackInfoReturnable<Boolean> cir)
 	{
 		if(field_7834 == EquipmentSlot.HEAD)
 		{
@@ -39,7 +40,7 @@ public class ExampleMixin
 		at = @At(value = "HEAD"),
 		cancellable = true
 	)
-	private void init(CallbackInfoReturnable<Integer> cir)
+	private void getMaxItemCountInject(CallbackInfoReturnable<Integer> cir)
 	{
 		if(field_7834 == EquipmentSlot.HEAD)
 		{

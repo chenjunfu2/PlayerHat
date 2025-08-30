@@ -3,7 +3,7 @@
 	"package": "chenjunfu2.playerhat.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"PlayerScreenHandlerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
